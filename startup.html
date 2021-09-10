@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+
+    <div id="app"></div>
+
+
+    <script>
+        //model
+        let info = 'Start PC';
+        let OK = 'Ja';
+        let Decline = 'Nei';
+
+        //view
+        show();
+        function show(){
+            document.getElementById('app').innerHTML = `
+       
+        <div id="info">${info}</div>
+
+        <button onclick="Ja(this)">${OK}</button>
+        <button onclick="Nei(this)">${Decline}</button>
+        `;
+    }
+
+    //Controller
+        function Ja(){
+            if(info == "Start PC"){
+                info = "Vis Bios meny?";
+                OK = "Spam F10";
+            } else if(info == "Vis Bios meny?"){
+                info = "Boot fra CDrom D:?";
+                OK ="Ja";
+            } else if(info == "Boot fra CDrom D:?" || "Boot fra Floppy A:?"){ 
+                info = "Welcome to Windows 95!";
+            } 
+            show()
+        }
+
+        function Nei(){
+            if(info == "Start PC"){
+                info = "God Natt!";
+            } else if(info == "Vis Bios meny?" || "Boot fra Floppy A:?"){
+                info = "Boot fra C:?";
+                Decline = "Restart";
+                OK = "Ja";
+            } else if(info == "Boot fra CDrom D:?"){ 
+                info = "Boot fra Floppy A:?";
+            } else if(info == "Boot fra C:?"){
+                info = "Boot fra Floppy A:?";
+            } else if(Decline == "Restart"){
+                info = 'Start PC';
+                OK = 'Ja';
+                Decline = 'Nei';
+            }
+            show()
+        }
+  
+
+    </script>
+</body>
+
+
+</html>
